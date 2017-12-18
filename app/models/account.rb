@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+  belongs_to :family
   has_many :transactions
   has_many :recurring_transactions
 

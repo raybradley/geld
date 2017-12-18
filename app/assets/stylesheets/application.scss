@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+
+h1, h2, h3, h4, h5 {
+  font-family: superclarendon;
+}
+
+body, input {
+  font-family: "proxima-nova", "Segoe UI", sans-serif;
+}
+
+
+@mixin min-width {
+  min-width: 120px;
+}
+
+.btn-add {
+  @include min-width;
+}

@@ -12,20 +12,38 @@ class RecurringTransaction < ApplicationRecord
   }
 
   # returns a Transaction
-  def next_instance(after: nil)
-    after = starts_at unless after.present?
-    next_date = starts_at
-    until next_date > after
-      next_date += frequency_multiplier.day   if daily?
-      next_date += frequency_multiplier.week  if weekly?
-      next_date += frequency_multiplier.month if monthly?
-      next_date += frequency_multiplier.year  if yearly?
-    end
+  def next_instance(after: starts_at)
     Transaction.new(
-      occurred_at: next_date,
+      occurred_at: next_date(after: after),
       description: description,
       amount: amount
     )
+  end
+
+  # when will it run again?
+  def next_date(after: nil)
+    after ||= last_occurred_at || Date.today
+    result = starts_at
+    until result > after
+      increment = frequency_multiplier.day   if daily?
+      increment = frequency_multiplier.week  if weekly?
+      increment = frequency_multiplier.month if monthly?
+      increment = frequency_multiplier.year  if yearly?
+      result += increment
+    end
+    result
+  end
+
+  # when would it have run previously?
+  def previous_date(before: Date.today)
+    result = starts_at
+    result = next_date(after: result) until next_date(after: result) > before
+    result
+  end
+
+  # should it run today?
+  def today?
+    next_date == Date.today
   end
 
   # returns an array of Transactions

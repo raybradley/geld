@@ -1,0 +1,15 @@
+= form_for RecurringTransaction.new, remote: true do |f|
+  #newAccountModal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h5.modal-title = I18n.t 'new_account_title'
+          button.close(type="button" data-dismiss="modal")
+            span &times;
+        .modal-body
+          .form-group
+            = f.label :description
+            = f.text_field :description, class: 'form-control', autofocus: true
+        .modal-footer
+          = f.submit 'Add Recurring Entry', class: 'btn btn-primary'
+          button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel

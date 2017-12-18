@@ -1,0 +1,15 @@
+= form_for @current_family.accounts.new, remote: true do |f|
+  #newAccountModal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h5.modal-title = I18n.t 'new_account_title'
+          button.close(type="button" data-dismiss="modal")
+            span &times;
+        .modal-body
+          .form-group
+            = f.label :name
+            = f.text_field :name, class: 'form-control', autofocus: true
+        .modal-footer
+          = f.submit 'Add Account', class: 'btn btn-primary'
+          button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
