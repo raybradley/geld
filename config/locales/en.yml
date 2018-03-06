@@ -32,3 +32,10 @@
 en:
   hello: "Hello world"
   new_account_title: "New Account"
+
+  cash_flow:
+    date: "Date"
+    description: "Description"
+    credit: "Credit"
+    debit: "Debit"
+    balance: "Balance"

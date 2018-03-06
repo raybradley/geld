@@ -32,3 +32,30 @@ body, input {
 .btn-add {
   @include min-width;
 }
+
+.currency {
+  text-align: right;
+}
+
+.overdrawn {
+  background: lighten(#f00, 46%);
+}
+
+.future {
+  td {
+    color: #888;
+  }
+}
+
+.today {
+  td {
+    border-color: #FF4F00;
+    border-width: 2px;
+  }
+}
+
+td.day {
+  width: 2rem;
+  white-space: nowrap;
+  text-align: right;
+}
