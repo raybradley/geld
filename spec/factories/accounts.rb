@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :account do
+    family
     name 'Wells Fargo'
 
     after(:create) do |account, _evaluator|

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :family do
-    name "MyString"
+    name 'The Snerds'
   end
 end
