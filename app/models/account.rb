@@ -9,6 +9,8 @@
 #  family_id  :integer
 #
 
+# an Account (bank, etc) belonging to a Family
+#
 class Account < ApplicationRecord
   belongs_to :family
   has_many :transactions
@@ -18,11 +20,13 @@ class Account < ApplicationRecord
     transactions.sum(&:amount)
   end
 
-  # returns the projected balance on a given date, based on recurring transactions on this account
+  # returns the projected balance on a given date, based on
+  # recurring transactions on this account
   def balance_on(target_date: nil)
     return unless target_date.present?
     if target_date.future?
-      balance + future_transactions(until_date: target_date).inject(0) { |sum, tx| sum + tx.amount }
+      balance + future_transactions(until_date: target_date)
+                .inject(0) { |sum, tx| sum + tx.amount }
     else
       transactions.where('occurred_at < ?', target_date.to_date).sum(&:amount)
     end
@@ -45,5 +49,12 @@ class Account < ApplicationRecord
     transactions
       .where('occurred_at >= ?', from_date.to_date)
       .order(:occurred_at).to_a
-  end  
+  end
+
+  def all_transactions(from_date: nil, until_date: nil)
+    return [] unless from_date.present? && until_date.present?
+    past_transactions(from_date: from_date).concat(
+      future_transactions(until_date: until_date)
+    )
+  end
 end

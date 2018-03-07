@@ -8,6 +8,9 @@
 #  updated_at :datetime         not null
 #
 
+# a group of people with access to a set of accounts and
+# related data
+#
 class Family < ApplicationRecord
   has_many :users
   has_many :accounts
@@ -40,9 +43,11 @@ class Family < ApplicationRecord
   end
 
   # all past and future transactions between two dates
-  def transactions(from_date: nil, until_date: nil)
-    return unless from_date.present? && until_date.present?
-    past_transactions(from_date: from_date).concat future_transactions(until_date: until_date)
+  def all_transactions(from_date: nil, until_date: nil)
+    return [] unless from_date.present? && until_date.present?
+    past_transactions(from_date: from_date).concat(
+      future_transactions(until_date: until_date)
+    )
   end
 
   def balance
@@ -55,5 +60,36 @@ class Family < ApplicationRecord
       balance += account.balance_on(target_date: target_date)
     end
     balance
+  end
+
+  # returns an array of daily balances
+  def expanded_transactions(from_date: nil, until_date: nil)
+    txns = all_transactions(from_date: from_date, until_date: until_date)
+    balance = balance_on(from_date)
+    current_date = from_date.to_date
+
+    result = [
+      {
+        date: txns[0].occurred_at.to_date,
+        balance: balance
+      }
+    ]
+
+    # start from the second array element
+    txns.shift.each do |txn|
+      # fill the array between transactions
+      while current_date < txn.occurred_at.to_date
+        result << {
+          date: current_date,
+          balance: balance
+        }
+        current_date += 1.day
+      end
+
+      # now we've reached the next transaction
+      balance += txn.amount
+    end
+
+    result
   end
 end
