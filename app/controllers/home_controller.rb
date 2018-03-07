@@ -10,5 +10,9 @@ class HomeController < ApplicationController
     @transactions     = @current_family.all_transactions(
       from_date: from_date, until_date: until_date
     )
+    @daily_balances = @current_family.balance_over_time(
+      from_date: Date.today,
+      until_date: until_date
+    )
   end
 end

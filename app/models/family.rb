@@ -63,26 +63,20 @@ class Family < ApplicationRecord
   end
 
   # returns an array of daily balances
-  def expanded_transactions(from_date: nil, until_date: nil)
-    txns = all_transactions(from_date: from_date, until_date: until_date)
-    balance = balance_on(from_date)
-    current_date = from_date.to_date
+  def balance_over_time(from_date: nil, until_date: nil)
+    raise 'from_date or until_date missing' unless from_date.present? && until_date.present?
 
-    result = [
-      {
-        date: txns[0].occurred_at.to_date,
-        balance: balance
-      }
-    ]
+    txns = all_transactions(from_date: from_date, until_date: until_date)
+
+    # seed values
+    balance = balance_on(target_date: from_date) + txns[0].amount
+    current_date = from_date.to_date
+    result = {}
 
     # start from the second array element
-    txns.shift.each do |txn|
-      # fill the array between transactions
+    txns.each do |txn|
       while current_date < txn.occurred_at.to_date
-        result << {
-          date: current_date,
-          balance: balance
-        }
+        result[current_date] = balance
         current_date += 1.day
       end
 

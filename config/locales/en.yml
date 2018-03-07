@@ -33,9 +33,14 @@ en:
   hello: "Hello world"
   new_account_title: "New Account"
 
+  home:
+    recent_and_upcoming: "Recent & Upcoming"
+    cash_flow: "Cash Flow Projection"
+
   cash_flow:
     date: "Date"
     description: "Description"
+    amount: "Amount"
     credit: "Credit"
     debit: "Debit"
     balance: "Balance"

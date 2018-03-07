@@ -1,24 +1,7 @@
-- balance = @starting_balance
-- last_txn = nil
-
-table.table.table-sm
-  tr
-    th(colspan="2") = I18n.t('cash_flow.date')
-    th = I18n.t('cash_flow.description')
-    th.currency = I18n.t('cash_flow.debit')
-    th.currency = I18n.t('cash_flow.credit')
-    th.currency = I18n.t('cash_flow.balance')
-    th
-
-  - @transactions.each do |txn|
-    - balance += txn.amount
-    - today = last_txn.present? && txn.occurred_at.future? && last_txn.occurred_at.past?
-    - last_txn = txn
-    tr(class="#{balance.positive? ? 'normal' : 'overdrawn'} #{txn.amount.positive? ? 'credit' : 'debit'} #{txn.occurred_at.future? ? 'future' : 'past'} #{'today' if today}")
-      td.day   = txn.occurred_at.strftime('%e')
-      td.month = txn.occurred_at.strftime('%b')
-      td = txn.description
-      td.currency = number_to_currency(- txn.amount) if txn.amount.negative?
-      td.currency = number_to_currency(txn.amount)   if txn.amount.positive?
-      td.currency = number_to_currency(balance)
-      td
+= line_chart @daily_balances,
+  prefix: '$',
+  thousands: ',',
+  points: false,
+  curve: false,
+  colors: ['#FF4F00'],
+  library: { fontFamily: 'proxima-nova' }

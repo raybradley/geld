@@ -17,11 +17,44 @@
 @import "bootstrap";
 
 h1, h2, h3, h4, h5 {
-  font-family: superclarendon;
+  font-family: "Idlewild SSm A", "Idlewild SSm B";
+  // font-family: "Sentinel SSm A", "Sentinel SSm B", superclarendon;
+  font-weight: 600;
+}
+
+h1 {
+  font-weight: 600;
+  color: #FF4F00;
+  font-size: 1rem;
+}
+
+h3, h4, h5 {
+  margin-bottom: 1rem;
+}
+
+.card-header {
+  font-family: "Idlewild SSm A", "Idlewild SSm B"; 
+  background: lighten(#E5E4E4, 5%); 
+  // background: darken(#E5E4E4, 20%);
+  // color: #fff;
+  padding-left: 0;
+}
+
+.card {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  padding-left: 0;
+  border-top: 2px solid darken(#E5E4E4, 60%);
+}
+
+body {
+  background-color: lighten(#E5E4E4, 5%);
 }
 
 body, input {
   font-family: "proxima-nova", "Segoe UI", sans-serif;
+  color: darken(#E5E4E4, 50%);
 }
 
 
@@ -58,4 +91,18 @@ td.day {
   width: 2rem;
   white-space: nowrap;
   text-align: right;
+}
+
+td.credit, td.debit, th.credit, th.debit {
+  display: none;
+}
+
+@media only screen and (min-width : 1400px) {
+  th.amount, td.amount {
+    display: none;
+  }
+
+  td.credit, td.debit, th.credit, th.debit {
+    display: table-cell;
+  }
 }
