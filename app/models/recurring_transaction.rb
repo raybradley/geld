@@ -32,7 +32,8 @@ class RecurringTransaction < ApplicationRecord
     Transaction.new(
       occurred_at: next_date(after: after),
       description: description,
-      amount: amount
+      amount: amount,
+      account: account
     )
   end
 
@@ -71,5 +72,9 @@ class RecurringTransaction < ApplicationRecord
       txn = next_instance(after: txn.occurred_at)
     end
     result
+  end
+
+  def budget_item?
+    account.budget?
   end
 end

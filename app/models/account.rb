@@ -57,4 +57,8 @@ class Account < ApplicationRecord
       future_transactions(until_date: until_date)
     )
   end
+
+  def budget?
+    name == '*budget'
+  end
 end

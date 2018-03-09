@@ -5,6 +5,7 @@ table.table.table-sm(style="font-size:80%;")
   tr
     th(colspan="2")     = I18n.t('cash_flow.date')
     th                  = I18n.t('cash_flow.description')
+    th.account          = I18n.t('cash_flow.account')
     th.currency.amount  = I18n.t('cash_flow.amount')
     th.currency.debit   = I18n.t('cash_flow.debit')
     th.currency.credit  = I18n.t('cash_flow.credit')
@@ -15,10 +16,11 @@ table.table.table-sm(style="font-size:80%;")
     - balance += txn.amount
     - today = last_txn.present? && txn.occurred_at.future? && last_txn.occurred_at.past?
     - last_txn = txn
-    tr(class="#{balance.positive? ? 'normal' : 'overdrawn'} #{txn.amount.positive? ? 'credit' : 'debit'} #{txn.occurred_at.future? ? 'future' : 'past'} #{'today' if today}")
+    tr(class="#{balance.positive? ? 'normal' : 'overdrawn'} #{txn.amount.positive? ? 'plus' : 'minus'} #{txn.occurred_at.future? ? 'future' : 'past'} #{'today' if today}")
       td.day              = txn.occurred_at.strftime('%e')
       td.month            = txn.occurred_at.strftime('%b')
       td                  = txn.description
+      td.account          = txn.account.name
       td.currency.amount  = number_to_currency(txn.amount)
       td.currency.debit   = number_to_currency(- txn.amount) if txn.amount.negative?
       td.currency.credit  = number_to_currency(txn.amount)   if txn.amount.positive?

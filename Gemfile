@@ -22,6 +22,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
+  gem 'faker'
   gem 'selenium-webdriver'
   gem 'sqlite3'
 end
@@ -36,7 +37,6 @@ end
 
 group :test do
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'rspec-rails'
 end
 
