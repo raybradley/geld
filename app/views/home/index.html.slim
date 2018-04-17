@@ -1,23 +1,14 @@
-h1 Home
+header
+  = render partial: 'accounts/list'
+  = render partial: 'accounts/new_transaction'
+  = render partial: 'accounts/new_recurring_transaction'
+  = render partial: 'accounts/new_account'
 
-.row
-  .col-md-8
-    .card
-      .card-header
-        = I18n.t('home.cash_flow')
-      .card-body
-        = render partial: 'home/cash_flow'
+main
+  #cash-flow-chart
+    = render partial: 'home/cash_flow'
 
-  .col-md-4
-    .card
-      .card-header
-        = I18n.t('home.recent_and_upcoming')
-      .card-body
-        = render partial: 'home/ledger'
+  #ledger
+    = render partial: 'home/ledger'
 
-.row
-  .col-md-12
-    = render partial: 'accounts/list'
-    = render partial: 'accounts/new_transaction'
-    = render partial: 'accounts/new_recurring_transaction'
-    = render partial: 'accounts/new_account'  
+#transaction_detail

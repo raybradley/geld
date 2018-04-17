@@ -12,6 +12,7 @@
 #  description          :string
 #  account_id           :integer
 #  last_occurred_at     :date
+#  type                 :string
 #
 
 # a recurring transaction stores things that happen
@@ -29,12 +30,16 @@ class RecurringTransaction < ApplicationRecord
 
   # returns a Transaction
   def next_instance(after: starts_at)
-    Transaction.new(
+    txn = FutureTransaction.new(
       occurred_at: next_date(after: after),
       description: description,
       amount: amount,
       account: account
     )
+
+    txn.recurring_transaction = self
+
+    txn
   end
 
   # when will it run again?

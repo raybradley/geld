@@ -1,24 +1,16 @@
 doctype html
 html
   head
-    title
-      | Geld
+    title Geld
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = stylesheet_link_tag    'https://use.typekit.net/zgp3qrf.css'
+    / = stylesheet_link_tag    'https://use.typekit.net/zgp3qrf.css'
     = stylesheet_link_tag    'https://cloud.typography.com/7513036/6687792/css/fonts.css'
     
   body
-    .container-fluid
-      .dropdown
-        button.btn.btn-primary.btn-add.dropdown-toggle(type="button" data-toggle="dropdown") Add
-        .dropdown-menu
-          a.dropdown-item(href="#" data-toggle="modal" data-target="#newTransaction") Entry
-          a.dropdown-item(href="#" data-toggle="modal" data-target="#newRecurringTransaction") Recurring Entry
-          a.dropdown-item(href="#" data-toggle="modal" data-target="#newAccountModal") Account
-      p.notice
-        = notice
-      p.alert
-        = alert
-      = yield
+    p.notice
+      = notice
+    p.alert
+      = alert
+    = yield

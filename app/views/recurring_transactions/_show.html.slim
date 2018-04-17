@@ -1,0 +1,46 @@
+= form_for @recurring_transaction do |f|
+  #transaction.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h5.modal-title = I18n.t('recurring_transactions.title')
+          button.close(data-dismiss="modal")
+            span &times;
+        .modal-body
+          h6 = @recurring_transaction.description
+
+          .form-group.row
+            = f.label :amount, class: 'col-md-3 col-form-label'
+            = f.number_field :amount, class: 'col-md-4 form-control'
+
+          .form-group.row
+              = f.label 'Every', class: 'col-md-3 col-form-label'
+              = f.select :frequency_multiplier, [[1, 1], [2, 2], [3, 3], [4, 4]], {}, {class: 'col-md-4 form-control mr-2'}
+              = f.select :frequency, [                        \
+                [I18n.t('global.day').downcase,   'daily'],   \
+                [I18n.t('global.week').downcase,  'weekly'],  \
+                [I18n.t('global.month').downcase, 'monthly'], \
+                [I18n.t('global.year').downcase,  'yearly']   \
+              ], {}, {class: 'col-md-4 form-control'}
+
+        .modal-footer
+          = f.submit I18n.t('recurring_transactions.save'), class: 'btn btn-primary'
+          = f.button I18n.t('global.cancel'), class: 'btn btn-cancel', data: { dismiss: 'modal' }
+
+javascript:
+  function prepUI() {
+    var mult = $('#recurring_transaction_frequency_multiplier').val();
+
+    $('#recurring_transaction_frequency option').each(function(i) {
+      var v = $(this).text();
+      if(v.endsWith('s') && mult == 1) {
+        $(this).text(v.substring(0, v.length - 1)); // strip last letter
+      } else if(!v.endsWith('s') && mult != 1) {
+        $(this).text(v + 's'); // pluralize
+      }
+    });
+  }
+
+  $('#recurring_transaction_frequency_multiplier').change(function(e) {
+    prepUI();
+  });

@@ -12,7 +12,7 @@
 # an Account (bank, etc) belonging to a Family
 #
 class Account < ApplicationRecord
-  belongs_to :family
+  # belongs_to :family
   has_many :transactions
   has_many :recurring_transactions
 
@@ -37,7 +37,6 @@ class Account < ApplicationRecord
     return unless until_date.present?
 
     txns = []
-
     recurring_transactions.each do |rt|
       txns.concat rt.future_instances(until_date: until_date)
     end

@@ -14,7 +14,8 @@
 class Family < ApplicationRecord
   has_many :users
   has_many :accounts
-  has_many :recurring_transactions
+  has_many :recurring_transactions, through: :accounts
+  has_many :transactions, through: :accounts
 
   # returns recurring transactions on this family up to a target date
   def future_transactions(until_date: nil)

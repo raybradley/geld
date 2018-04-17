@@ -33,6 +33,14 @@ en:
   hello: "Hello world"
   new_account_title: "New Account"
 
+  global:
+    day:    'Day'
+    week:   'Week'
+    month:  'Month'
+    year:   'Year'
+    cancel: 'Cancel'
+
+
   home:
     recent_and_upcoming: "Recent & Upcoming"
     cash_flow: "Cash Flow Projection"
@@ -45,3 +53,7 @@ en:
     debit: "Debit"
     balance: "Balance"
     account: "Account"
+
+  recurring_transactions:
+    title: "Recurring Transaction"
+    save: 'Update'

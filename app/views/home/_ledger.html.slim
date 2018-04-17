@@ -3,26 +3,35 @@
 
 table.table.table-sm(style="font-size:80%;")
   tr
-    th(colspan="2")     = I18n.t('cash_flow.date')
-    th                  = I18n.t('cash_flow.description')
+    th
+    th.month            = I18n.t('cash_flow.date')
+    th.deictic-date
+    th.description      = I18n.t('cash_flow.description')
     th.account          = I18n.t('cash_flow.account')
     th.currency.amount  = I18n.t('cash_flow.amount')
     th.currency.debit   = I18n.t('cash_flow.debit')
     th.currency.credit  = I18n.t('cash_flow.credit')
     th.currency.balance = I18n.t('cash_flow.balance')
-    th
 
   - @transactions.each do |txn|
     - balance += txn.amount
     - today = last_txn.present? && txn.occurred_at.future? && last_txn.occurred_at.past?
     - last_txn = txn
-    tr(class="#{balance.positive? ? 'normal' : 'overdrawn'} #{txn.amount.positive? ? 'plus' : 'minus'} #{txn.occurred_at.future? ? 'future' : 'past'} #{'today' if today}")
+    - object_type = txn.is_a?(FutureTransaction) ? 'FutureTransaction' : 'Transaction'
+    - object_id = txn.id || txn.recurring_transaction.id
+    tr(class="#{balance.positive? ? 'normal' : 'overdrawn'} #{txn.amount.positive? ? 'plus' : 'minus'} #{txn.occurred_at.future? ? 'future' : 'past'} #{'today' if today}" data-object_id="#{object_id}" data-object_type="#{object_type}")
       td.day              = txn.occurred_at.strftime('%e')
       td.month            = txn.occurred_at.strftime('%b')
-      td                  = txn.description
+      td.deictic-date     = abbreviated_distance_of_time_in_words_to_now(txn.occurred_at)
+
+      td.description      
+        - if txn.is_a?(FutureTransaction)
+          = link_to(txn.description, recurring_transaction_path(txn.recurring_transaction), remote: true)
+        - else
+          = link_to(txn.description, transaction_path(txn), remote: true)
+      
       td.account          = txn.account.name
       td.currency.amount  = number_to_currency(txn.amount)
       td.currency.debit   = number_to_currency(- txn.amount) if txn.amount.negative?
       td.currency.credit  = number_to_currency(txn.amount)   if txn.amount.positive?
       td.currency.balance = number_to_currency(balance)
-      td

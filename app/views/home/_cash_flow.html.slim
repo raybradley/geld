@@ -1,7 +1,15 @@
+/ use Chartkick to render a chart!
 = line_chart @daily_balances,
   prefix: '$',
   thousands: ',',
   points: false,
   curve: false,
   colors: ['#FF4F00'],
-  library: { }
+  library: { tooltips: { intersect: false } }
+
+javascript:
+  $('#chart-1').click(function(e) {
+    var chart = Chartkick.charts['chart-1'].chart;
+    var f = chart.getElementAtEvent(e);
+    var g = f;
+  });
