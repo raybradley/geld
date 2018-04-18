@@ -13,7 +13,7 @@
 #
 class Family < ApplicationRecord
   has_many :users
-  has_many :accounts
+  has_many :accounts, dependent: :destroy
   has_many :recurring_transactions, through: :accounts
   has_many :transactions, through: :accounts
 

@@ -12,6 +12,8 @@
 #  description          :string
 #  account_id           :integer
 #  last_occurred_at     :date
+#  type                 :string
+#  to_account_id        :integer
 #
 
 require 'rails_helper'

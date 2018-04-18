@@ -8,6 +8,7 @@ table.table.table-sm(style="font-size:80%;")
     th.deictic-date
     th.description      = I18n.t('cash_flow.description')
     th.account          = I18n.t('cash_flow.account')
+    th.payee            = I18n.t('cash_flow.payee')
     th.currency.amount  = I18n.t('cash_flow.amount')
     th.currency.debit   = I18n.t('cash_flow.debit')
     th.currency.credit  = I18n.t('cash_flow.credit')
@@ -31,6 +32,7 @@ table.table.table-sm(style="font-size:80%;")
           = link_to(txn.description, transaction_path(txn), remote: true)
       
       td.account          = txn.account.name
+      td.payee            = txn.to_account&.name
       td.currency.amount  = number_to_currency(txn.amount)
       td.currency.debit   = number_to_currency(- txn.amount) if txn.amount.negative?
       td.currency.credit  = number_to_currency(txn.amount)   if txn.amount.positive?

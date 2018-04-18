@@ -12,6 +12,8 @@
 #  description          :string
 #  account_id           :integer
 #  last_occurred_at     :date
+#  type                 :string
+#  to_account_id        :integer
 #
 
 # a recurring transaction stores things that happen
@@ -19,6 +21,7 @@
 #
 class RecurringTransaction < ApplicationRecord
   belongs_to :account
+  belongs_to :to_account, class_name: 'Account', optional: true
 
   enum frequency: {
     daily: 0,
@@ -39,8 +42,8 @@ class RecurringTransaction < ApplicationRecord
     transaction_type == :credit
   end
 
-  def amount
-    self[:amount].abs
+  def amount_abs
+    amount.abs
   end
 
   # returns a Transaction
@@ -49,7 +52,8 @@ class RecurringTransaction < ApplicationRecord
       occurred_at: next_date(after: after),
       description: description,
       amount: amount,
-      account: account
+      account: account,
+      to_account: to_account
     )
 
     txn.recurring_transaction = self

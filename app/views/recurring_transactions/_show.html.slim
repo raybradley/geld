@@ -1,4 +1,4 @@
-= form_for @recurring_transaction do |f|
+= form_for @recurring_transaction, remote: true do |f|
   #transaction.modal.fade
     .modal-dialog
       .modal-content
@@ -13,7 +13,7 @@
 
           .form-group.row
             = f.label :amount, class: 'col-md-3 col-form-label'
-            = f.number_field :amount, class: 'col-md-4 form-control'
+            = f.number_field :amount_abs, class: 'col-md-4 form-control'
 
           .form-group.row
               = f.label 'Every', class: 'col-md-3 col-form-label'
@@ -26,7 +26,7 @@
               ], {}, {class: 'col-md-3 form-control'}
 
         .modal-footer
-          = f.submit I18n.t('global.delete'), class: 'btn btn-link float-left mr-auto btn-danger'
+          = f.submit I18n.t('global.delete'), class: 'btn btn-link float-left mr-auto btn-delete', data: { confirm: I18n.t('recurring_transactions.confirm_delete') }
           = f.submit I18n.t('recurring_transactions.save'), class: 'btn btn-primary'
           = f.button I18n.t('global.cancel'), class: 'btn btn-cancel', data: { dismiss: 'modal' }
 

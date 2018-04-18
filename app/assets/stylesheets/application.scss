@@ -16,23 +16,25 @@
 
 @import "bootstrap";
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
+$color_brand: #a00000;
+$red: $color_brand;
 
-h1, h2, h3, h4, h5 {
-  // font-family: "Idlewild SSm A", "Idlewild SSm B";
-  // font-family: "Sentinel SSm A", "Sentinel SSm B", superclarendon;
-  font-weight: 600;
-}
+// h1, h2, h3, h4, h5 {
+//   // font-family: "Idlewild SSm A", "Idlewild SSm B";
+//   // font-family: "Sentinel SSm A", "Sentinel SSm B", superclarendon;
+//   font-weight: 600;
+// }
+
+// h1 {
+//   font-weight: 600;
+//   color: #FF4F00;
+//   font-size: 1rem;
+// }
 
 h1 {
-  font-weight: 600;
-  color: #FF4F00;
-  font-size: 1rem;
+  color: $color_brand;
+  font-weight: 800;
+  line-height: 1.0;
 }
 
 h3, h4, h5 {
@@ -94,7 +96,7 @@ body, input {
 
 .today {
   td {
-    border-color: #FF4F00;
+    border-color: $red;
     border-width: 2px;
   }
 }
@@ -148,6 +150,7 @@ header, main {
 
 header {
   left: 32px;
+  top: 32px;
   width: 320px;
 }
 
@@ -173,7 +176,7 @@ main {
 }
 
 #ledger {
-  top: 428px;
+  top: 364px;
   bottom: 32px;
   overflow: auto;
 }
@@ -183,10 +186,23 @@ table tr td:last-child, table tr th:last-child {
   padding-right: 1.5rem;
 }
 
+// suppress spinner on input['number'] fields
 input[type='number'] {
   -moz-appearance:textfield;
 }
 
-btn.btn-link.btn-danger {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.btn.btn-link.btn-delete {
   color: $red !important;
+  border-color: transparent;
+}
+
+.modal-footer .btn-delete {
+  padding-left: 0;
 }

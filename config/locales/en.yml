@@ -53,9 +53,11 @@ en:
     debit:        'Debit'
     balance:      'Balance'
     account:      'Account'
+    payee:        'Payee'
 
   recurring_transactions:
-    title:        'Recurring Transaction'
-    title_credit: 'Recurring Credit'
-    title_debit:  'Recurring Debit'
-    save:         'Update'
+    title:          'Recurring Transaction'
+    title_credit:   'Recurring Credit'
+    title_debit:    'Recurring Debit'
+    save:           'Update'
+    confirm_delete: 'Are you sure you want to remove this recurring transaction?'

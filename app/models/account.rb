@@ -12,9 +12,8 @@
 # an Account (bank, etc) belonging to a Family
 #
 class Account < ApplicationRecord
-  # belongs_to :family
-  has_many :transactions
-  has_many :recurring_transactions
+  has_many :transactions, dependent: :destroy
+  has_many :recurring_transactions, dependent: :destroy
 
   def balance
     transactions.sum(&:amount)
@@ -56,6 +55,31 @@ class Account < ApplicationRecord
       future_transactions(until_date: until_date)
     )
   end
+
+  # returns an array of daily balances
+  def balance_over_time(from_date: nil, until_date: nil)
+    raise 'from_date or until_date missing' unless from_date.present? && until_date.present?
+
+    txns = all_transactions(from_date: from_date, until_date: until_date)
+
+    # seed values
+    balance = balance_on(target_date: from_date) + txns[0].amount
+    current_date = from_date.to_date
+    result = {}
+
+    # start from the second array element
+    txns.each do |txn|
+      while current_date < txn.occurred_at.to_date
+        result[current_date] = balance
+        current_date += 1.day
+      end
+
+      # now we've reached the next transaction
+      balance += txn.amount
+    end
+
+    result
+  end  
 
   def budget?
     name == '*budget'

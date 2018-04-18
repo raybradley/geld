@@ -1,0 +1,11 @@
+header
+  h1 = @account.name
+
+main
+  #cash-flow-chart
+    = render partial: 'home/cash_flow'
+
+  #ledger
+    = render partial: 'home/ledger'
+
+#transaction_detail

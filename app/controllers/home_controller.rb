@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    from_date  = 2.weeks.ago
+    from_date  = 3.weeks.ago
     until_date = 3.month.from_now
 
     @current_family   = current_family
