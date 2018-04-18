@@ -30,8 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  new_account_title: "New Account"
+  accounts:
+    new: 'New Account'
 
   global:
     day:    'Day'
@@ -39,21 +39,23 @@ en:
     month:  'Month'
     year:   'Year'
     cancel: 'Cancel'
-
+    delete: 'Remove'
 
   home:
-    recent_and_upcoming: "Recent & Upcoming"
-    cash_flow: "Cash Flow Projection"
+    recent_and_upcoming:  'Recent & Upcoming'
+    cash_flow:            'Cash Flow Projection'
 
   cash_flow:
-    date: "Date"
-    description: "Description"
-    amount: "Amount"
-    credit: "Credit"
-    debit: "Debit"
-    balance: "Balance"
-    account: "Account"
+    date:         'Date'
+    description:  'Description'
+    amount:       'Amount'
+    credit:       'Credit'
+    debit:        'Debit'
+    balance:      'Balance'
+    account:      'Account'
 
   recurring_transactions:
-    title: "Recurring Transaction"
-    save: 'Update'
+    title:        'Recurring Transaction'
+    title_credit: 'Recurring Credit'
+    title_debit:  'Recurring Debit'
+    save:         'Update'

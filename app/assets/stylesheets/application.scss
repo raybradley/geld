@@ -40,8 +40,8 @@ h3, h4, h5 {
 }
 
 .card-header {
-  // font-family: "Idlewild SSm A", "Idlewild SSm B"; 
-  background: lighten(#E5E4E4, 5%); 
+  // font-family: "Idlewild SSm A", "Idlewild SSm B";
+  background: lighten(#E5E4E4, 5%);
   // background: darken(#E5E4E4, 20%);
   // color: #fff;
   padding-left: 0;
@@ -169,7 +169,7 @@ main {
 
 #cash-flow-chart {
   top: 32px;
-  height: 300px;  
+  height: 300px;
 }
 
 #ledger {
@@ -181,4 +181,12 @@ main {
 // padding on right of table because of scrollbars
 table tr td:last-child, table tr th:last-child {
   padding-right: 1.5rem;
+}
+
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+btn.btn-link.btn-danger {
+  color: $red !important;
 }

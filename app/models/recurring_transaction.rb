@@ -12,7 +12,6 @@
 #  description          :string
 #  account_id           :integer
 #  last_occurred_at     :date
-#  type                 :string
 #
 
 # a recurring transaction stores things that happen
@@ -27,6 +26,22 @@ class RecurringTransaction < ApplicationRecord
     monthly: 2,
     yearly: 3
   }
+
+  def transaction_type
+    self[:amount].positive? ? :credit : :debit
+  end
+
+  def debit?
+    transaction_type == :debit
+  end
+
+  def credit?
+    transaction_type == :credit
+  end
+
+  def amount
+    self[:amount].abs
+  end
 
   # returns a Transaction
   def next_instance(after: starts_at)

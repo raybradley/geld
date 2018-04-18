@@ -12,7 +12,6 @@
 #  description          :string
 #  account_id           :integer
 #  last_occurred_at     :date
-#  type                 :string
 #
 
 FactoryBot.define do

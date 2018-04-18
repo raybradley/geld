@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20180309214342) do
     t.string "description"
     t.integer "account_id"
     t.date "last_occurred_at"
-    t.string "type"
   end
 
   create_table "transactions", force: :cascade do |t|

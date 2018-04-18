@@ -3,8 +3,8 @@ ray    = snerds.users.find_by(email: 'ray.bradley@gmail.com')
 if ray.nil?
   snerds.users.create(
     email: 'ray.bradley@gmail.com',
-    password: 'b0ng0d0G',
-    password_confirmation: 'b0ng0d0G'
+    password: 'spinach',
+    password_confirmation: 'spinach'
   )
 end
 
