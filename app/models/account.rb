@@ -2,18 +2,35 @@
 #
 # Table name: accounts
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  family_id  :integer
+#  id           :integer          not null, primary key
+#  name         :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  family_id    :integer
+#  account_type :integer
 #
 
 # an Account (bank, etc) belonging to a Family
 #
 class Account < ApplicationRecord
+  encrypted_id key: 'c055cafa7225635b'
   has_many :transactions, dependent: :destroy
   has_many :recurring_transactions, dependent: :destroy
+  belongs_to :family
+
+  enum account_type: {
+    checking:    0,
+    savings:     1,
+    credit_card: 2
+  }
+
+  def asset?
+    !liability?
+  end
+
+  def liability?
+    [:credit_card].include? account_type.to_sym
+  end
 
   def balance
     transactions.sum(&:amount)
@@ -61,6 +78,8 @@ class Account < ApplicationRecord
     raise 'from_date or until_date missing' unless from_date.present? && until_date.present?
 
     txns = all_transactions(from_date: from_date, until_date: until_date)
+
+    return {from_date: 0} unless txns.count.positive?
 
     # seed values
     balance = balance_on(target_date: from_date) + txns[0].amount

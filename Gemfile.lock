@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/fclebinho/encrypted_id.git
+  revision: 99e4be1844fbc9e50653bff4ec5e27ceef098962
+  specs:
+    encrypted_id (1.1.1)
+      activerecord (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -246,6 +253,7 @@ DEPENDENCIES
   chartkick
   coffee-rails (~> 4.2)
   devise
+  encrypted_id!
   factory_bot_rails
   faker
   jbuilder (~> 2.5)

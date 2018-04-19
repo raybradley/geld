@@ -31,7 +31,11 @@
 
 en:
   accounts:
-    new: 'New Account'
+    new:         'New Account'
+    checking:    'Checking'
+    savings:     'Savings'
+    credit_card: 'Credit Card'
+    title_new:   'New %{account_type} Account'
 
   global:
     day:    'Day'

@@ -1,12 +1,12 @@
 header
   h1 = @account.name
 
-  #account-list
-    ul
-      - @current_family.accounts.each do |account|
-        li = link_to account.name, account
+  = render partial: 'home/account_list'
 
 main
-  = render partial: 'home/main'
+  - if @transactions.count.zero?
+    = render partial: 'home/ledger_empty'
+  - else
+    = render partial: 'home/main'
 
 #transaction_detail

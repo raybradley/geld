@@ -1,10 +1,12 @@
+- @color ||= '#a00000'
+
 / use Chartkick to render a chart!
 = area_chart @daily_balances,
   prefix: '$',
   thousands: ',',
   points: false,
   curve: false,
-  colors: ['#a00000'],
+  colors: [@color],
   library: { tooltips: { intersect: false } }
 
 javascript:

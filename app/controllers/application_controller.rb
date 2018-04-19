@@ -20,5 +20,7 @@ class ApplicationController < ActionController::Base
       from_date:  from_date,
       until_date: until_date
     )
+
+    @daily_balances.each { |k, v| @daily_balances[k] = -v } if @account.liability?
   end
 end

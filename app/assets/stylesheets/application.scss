@@ -19,18 +19,6 @@
 $color_brand: #a00000;
 $red: $color_brand;
 
-// h1, h2, h3, h4, h5 {
-//   // font-family: "Idlewild SSm A", "Idlewild SSm B";
-//   // font-family: "Sentinel SSm A", "Sentinel SSm B", superclarendon;
-//   font-weight: 600;
-// }
-
-// h1 {
-//   font-weight: 600;
-//   color: #FF4F00;
-//   font-size: 1rem;
-// }
-
 h1 {
   color: $color_brand;
   font-weight: 800;
@@ -42,10 +30,7 @@ h3, h4, h5 {
 }
 
 .card-header {
-  // font-family: "Idlewild SSm A", "Idlewild SSm B";
   background: lighten(#E5E4E4, 5%);
-  // background: darken(#E5E4E4, 20%);
-  // color: #fff;
   padding-left: 0;
 }
 
@@ -151,7 +136,7 @@ header, main {
 header {
   left: 32px;
   top: 32px;
-  width: 320px;
+  width: 288px;
   bottom: 32px;
 }
 
@@ -170,6 +155,63 @@ main {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+#account-list {
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+  }
+
+  a.sidebar {
+    color: #444;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0.5rem 0;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+      color: #000;
+    }
+
+    i {
+      // margin-right: 0.5rem;
+      width: 1.8rem;
+      display: inline-block;
+    }
+  }
+
+  li.active {
+    a {
+      color: #ccc;
+      cursor: default;
+
+      &:hover {
+        color: #ccc;
+        cursor: default;
+      }
+    }
+  }
+
+  li.new-account {
+    a {
+      color: $red;
+    }
+  }
+
+  h5 {
+    // text-align: center;
+    text-transform: uppercase;
+    color: #aaa;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding-left: 1.8rem;
+  }
 }
 
 #cash-flow-chart, #ledger {
@@ -213,4 +255,23 @@ input::-webkit-inner-spin-button {
 
 .modal-footer .btn-delete {
   padding-left: 0;
+}
+
+body.checking-account {
+  header h1 {
+    color: darken($yellow, 3%);
+  }
+
+  #chart-1 {
+    span._0 {
+      background-color: $green;
+    }
+  }
+}
+
+.blank-slate {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }

@@ -2,11 +2,12 @@
 #
 # Table name: accounts
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  family_id  :integer
+#  id           :integer          not null, primary key
+#  name         :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  family_id    :integer
+#  account_type :integer
 #
 
 require 'rails_helper'

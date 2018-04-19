@@ -1,15 +1,21 @@
-= form_for @current_family.accounts.new, remote: true do |f|
-  #newAccountModal.modal.fade
+= form_for @account, remote: true do |f|
+  #new-account-modal.modal.fade
     .modal-dialog
       .modal-content
         .modal-header
-          h5.modal-title = I18n.t 'new_account_title'
+          h5.modal-title = I18n.t('accounts.title_new', account_type: I18n.t("accounts.#{@account.account_type}"))
           button.close(type="button" data-dismiss="modal")
             span &times;
         .modal-body
           .form-group
             = f.label :name
             = f.text_field :name, class: 'form-control', autofocus: true
+
+          .form-group
+            = f.label :initial_balance
+            = text_field_tag :initial_balance, nil, class: 'form-control'
+
         .modal-footer
+          = f.hidden_field :account_type
           = f.submit 'Add Account', class: 'btn btn-primary'
           button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
