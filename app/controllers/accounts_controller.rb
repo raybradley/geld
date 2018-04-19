@@ -1,21 +1,9 @@
 class AccountsController < ApplicationController
   before_action :find_account, only: [:show]
+  before_action :find_current_family
 
   def show
-    from_date  = 3.weeks.ago
-    until_date = 3.month.from_now
-
-    @current_family   = current_family
-    @starting_balance = @account.balance_on(target_date: from_date)
-    @transactions     = @account.all_transactions(
-      from_date:  from_date,
-      until_date: until_date
-    )
-
-    @daily_balances = @account.balance_over_time(
-      from_date:  from_date,
-      until_date: until_date
-    )    
+    find_transactions_and_balances
   end
 
   def create
@@ -24,6 +12,10 @@ class AccountsController < ApplicationController
   end
 
   private
+
+  def find_current_family
+    @current_family = current_family
+  end
 
   def account_params
     params.require(:account).permit(:name)

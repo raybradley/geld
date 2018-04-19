@@ -79,7 +79,7 @@ body, input {
 }
 
 .overdrawn {
-  background: lighten(#f00, 46%);
+  background: lighten($red, 66%);
 }
 
 .past {
@@ -152,6 +152,7 @@ header {
   left: 32px;
   top: 32px;
   width: 320px;
+  bottom: 32px;
 }
 
 main {
@@ -162,6 +163,13 @@ main {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+#account-list {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 #cash-flow-chart, #ledger {

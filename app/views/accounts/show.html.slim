@@ -1,11 +1,12 @@
 header
   h1 = @account.name
 
-main
-  #cash-flow-chart
-    = render partial: 'home/cash_flow'
+  #account-list
+    ul
+      - @current_family.accounts.each do |account|
+        li = link_to account.name, account
 
-  #ledger
-    = render partial: 'home/ledger'
+main
+  = render partial: 'home/main'
 
 #transaction_detail

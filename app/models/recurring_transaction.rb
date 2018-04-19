@@ -12,7 +12,6 @@
 #  description          :string
 #  account_id           :integer
 #  last_occurred_at     :date
-#  type                 :string
 #  to_account_id        :integer
 #
 
@@ -43,7 +42,18 @@ class RecurringTransaction < ApplicationRecord
   end
 
   def amount_abs
-    amount.abs
+    self[:amount].abs
+  end
+
+  def amount_abs=(value)
+    value = value.to_f
+
+    if debit?
+      puts 'debiting'
+      self.amount = -value
+    else
+      self.amount = value
+    end
   end
 
   # returns a Transaction
