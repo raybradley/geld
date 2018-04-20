@@ -13,7 +13,8 @@ class RecurringTransactionsController < ApplicationController
   private
 
   def find_recurring_transaction
-    @recurring_transaction = current_family.recurring_transactions.find(params[:id])
+    @recurring_transaction = RecurringTransaction.find(params[:id])
+    @recurring_transaction = nil if @recurring_transaction.family.id != current_family.id
   end
 
   def recurring_transaction_params

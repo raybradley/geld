@@ -20,6 +20,7 @@
 # on a regular basis
 #
 class RecurringTransaction < ApplicationRecord
+  encrypted_id key: '8265a324107a4153'
   belongs_to :account
   belongs_to :to_account, class_name: 'Account', optional: true
 
@@ -29,6 +30,10 @@ class RecurringTransaction < ApplicationRecord
     monthly: 2,
     yearly: 3
   }
+
+  def family
+    account.family
+  end
 
   def transaction_type
     self[:amount].positive? ? :credit : :debit

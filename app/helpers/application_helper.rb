@@ -7,13 +7,13 @@ module ApplicationHelper
     glyphs = {
       :credit_card => 'credit-card',
       :checking    => 'money',
-      :savings     => 'money-alt'
+      :savings     => 'piggy-bank',
     }
 
     puts account.account_type.to_sym
     puts glyphs[account.account_type]
 
-    "<i class=\"fa fa-#{glyphs[account.account_type.to_sym]}\"></i>"
+    "<i class=\"far fa-#{glyphs[account.account_type.to_sym]}\"></i>"
   end
 
   def additional_classes

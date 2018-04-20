@@ -9,11 +9,6 @@ class AccountsController < ApplicationController
     find_transactions_and_balances
   end
 
-  def create
-    current_family.accounts.create(account_params)
-    redirect_to :root
-  end
-
   def new
     @account = current_family.accounts.new(account_type: params[:account_type].to_sym)
   end
@@ -21,6 +16,11 @@ class AccountsController < ApplicationController
   def create
     @account = @current_family.accounts.new(account_params)
     @account.save
+    @account.transactions.create(
+      description: 'Initial balance',
+      occurred_at: Time.now,
+      amount: params[:initial_balance].to_f
+    )
     redirect_to @account
   end
 

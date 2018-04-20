@@ -1,39 +1,33 @@
 = form_for @recurring_transaction, remote: true do |f|
-  #transaction.modal.fade
-    .modal-dialog
-      .modal-content
-        .modal-header
-          h5.modal-title = @recurring_transaction.credit? ? I18n.t('recurring_transactions.title_credit') : I18n.t('recurring_transactions.title_debit')
-          button.close(data-dismiss="modal")
-            span &times;
-        .modal-body
-          .form-group.row
-            = f.label :description, class: 'col-md-3 col-form-label'
-            = f.text_field :description, class: 'col-md-8 form-control', onclick: 'this.select();'
+  #transaction
+    h5.modal-title = @recurring_transaction.credit? ? I18n.t('recurring_transactions.title_credit') : I18n.t('recurring_transactions.title_debit')
 
-          .form-group.row
-            = f.label :amount, class: 'col-md-3 col-form-label'
-            = f.text_field :amount_abs, \
-              value: number_to_currency(@recurring_transaction.amount_abs, delimiter: '', unit: ''), \
-              class: 'col-md-4 form-control', \
-              onclick: 'this.select();', \
-              step: 0.01, \
-              min: 0
+    .form-group
+      = f.label :description, class: 'col-md-3 col-form-label'
+      = f.text_field :description, class: 'col-md-8 form-control', onclick: 'this.select();'
 
-          .form-group.row
-              = f.label 'Every', class: 'col-md-3 col-form-label'
-              = f.select :frequency_multiplier, [[1, 1], [2, 2], [3, 3], [4, 4]], {}, {class: 'col-md-3 form-control mr-2'}
-              = f.select :frequency, [                        \
-                [I18n.t('global.day').downcase,   'daily'],   \
-                [I18n.t('global.week').downcase,  'weekly'],  \
-                [I18n.t('global.month').downcase, 'monthly'], \
-                [I18n.t('global.year').downcase,  'yearly']   \
-              ], {}, {class: 'col-md-3 form-control'}
+    .form-group
+      = f.label :amount, class: 'col-md-3 col-form-label'
+      = f.text_field :amount_abs, \
+        value: number_to_currency(@recurring_transaction.amount_abs, delimiter: '', unit: ''), \
+        class: 'col-md-4 form-control', \
+        onclick: 'this.select();', \
+        step: 0.01, \
+        min: 0
 
-        .modal-footer
-          = f.submit I18n.t('global.delete'), class: 'btn btn-link float-left mr-auto btn-delete', data: { confirm: I18n.t('recurring_transactions.confirm_delete') }
-          = f.submit I18n.t('recurring_transactions.save'), class: 'btn btn-primary'
-          = f.button I18n.t('global.cancel'), class: 'btn btn-cancel', data: { dismiss: 'modal' }
+    .form-group
+        = f.label 'Every', class: 'col-md-3 col-form-label'
+        = f.select :frequency_multiplier, [[1, 1], [2, 2], [3, 3], [4, 4]], {}, {class: 'col-md-3 form-control mr-2'}
+        = f.select :frequency, [                        \
+          [I18n.t('global.day').downcase,   'daily'],   \
+          [I18n.t('global.week').downcase,  'weekly'],  \
+          [I18n.t('global.month').downcase, 'monthly'], \
+          [I18n.t('global.year').downcase,  'yearly']   \
+        ], {}, {class: 'col-md-3 form-control'}
+
+    = f.submit I18n.t('global.delete'), class: 'btn btn-link float-left mr-auto btn-delete', data: { confirm: I18n.t('recurring_transactions.confirm_delete') }
+    = f.submit I18n.t('recurring_transactions.save'), class: 'btn btn-primary'
+    = f.button I18n.t('global.cancel'), class: 'btn btn-cancel', data: { dismiss: 'modal' }
 
 javascript:
   function prepUI() {
