@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
   def show
     @additional_classes = "#{@account.account_type}-account"
     @color = 'rgb(247, 185, 0)' if @account.account_type == 'checking'
+    @color = 'rgb(0, 116, 240)' if @account.account_type == 'credit_card'
     find_transactions_and_balances
   end
 

@@ -65,3 +65,6 @@ en:
     title_debit:    'Recurring Debit'
     save:           'Update'
     confirm_delete: 'Are you sure you want to remove this recurring transaction?'
+
+  transactions:
+    add_now: 'Add one now'

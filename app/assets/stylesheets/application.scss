@@ -18,6 +18,9 @@
 
 $color_brand: #a00000;
 $red: $color_brand;
+$color_checking:    darken($yellow, 3%);
+$color_credit_card: darken($blue,   3%);
+$color_savings:     darken($green,  3%);
 
 h1 {
   color: $color_brand;
@@ -196,12 +199,28 @@ main {
         cursor: default;
       }
     }
+
+    i {
+      color: #ccc !important;
+    }
   }
 
   li.new-account {
     a {
       color: $red;
     }
+  }
+
+  li.checking-account i {
+    color: $color_checking;
+  }
+
+  li.credit_card-account i {
+    color: $color_credit_card;
+  }
+
+  li.savings-account i {
+    color: $color_savings;
   }
 
   h5 {
@@ -231,6 +250,25 @@ main {
   overflow: auto;
 }
 
+// headers for different account types
+body.checking-account {
+  header h1 {
+    color: $color_checking;
+  }
+}
+
+body.credit_card-account {
+  header h1 {
+    color: $color_credit_card;
+  }
+}
+
+body.savings-account {
+  header h1 {
+    color: $color_savings;
+  }
+}
+
 // padding on right of table because of scrollbars
 table tr td:last-child, table tr th:last-child {
   padding-right: 1.5rem;
@@ -257,21 +295,13 @@ input::-webkit-inner-spin-button {
   padding-left: 0;
 }
 
-body.checking-account {
-  header h1 {
-    color: darken($yellow, 3%);
-  }
-
-  #chart-1 {
-    span._0 {
-      background-color: $green;
-    }
-  }
-}
-
 .blank-slate {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
+
+  p {
+    text-align: center;
+  }
 }
