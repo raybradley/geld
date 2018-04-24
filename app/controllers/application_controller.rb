@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
       until_date: until_date
     )
 
+
     @daily_balances = @account.balance_over_time(
       from_date:  from_date,
       until_date: until_date
