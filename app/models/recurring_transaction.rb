@@ -64,12 +64,14 @@ class RecurringTransaction < ApplicationRecord
 
   # returns a Transaction
   def next_instance(after: starts_at)
+    occurred_at = next_date(after: after)
+
     txn = FutureTransaction.new(
-      occurred_at: next_date(after: after),
+      occurred_at: occurred_at,
       description: description,
-      amount: amount,
-      account: account,
-      to_account: to_account
+      amount:      amount,
+      account:     account,
+      to_account:  to_account
     )
 
     txn.recurring_transaction = self
@@ -80,7 +82,7 @@ class RecurringTransaction < ApplicationRecord
   # when will it run again?
   def next_date(after: nil)
     after ||= last_occurred_at || Date.today
-    result = starts_at
+    result = after
     until result > after
       increment = frequency_multiplier.day   if daily?
       increment = frequency_multiplier.week  if weekly?
