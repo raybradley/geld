@@ -10,9 +10,6 @@ module ApplicationHelper
       :savings     => 'piggy-bank',
     }
 
-    puts account.account_type.to_sym
-    puts glyphs[account.account_type]
-
     "<i class=\"far fa-#{glyphs[account.account_type.to_sym]}\"></i>"
   end
 

@@ -81,10 +81,12 @@ class Account < ApplicationRecord
 
     return {from_date: 0} unless txns.count.positive?
 
-    # seed values
-    balance = balance_on(target_date: from_date) + txns[0].amount
-    current_date = from_date.to_date
     result = {}
+
+    # seed values
+    balance = balance_on(target_date: from_date)
+    current_date = from_date.to_date
+    result[current_date] = balance
 
     # start from the second array element
     txns.each do |txn|
@@ -95,6 +97,11 @@ class Account < ApplicationRecord
 
       # now we've reached the next transaction
       balance += txn.amount
+    end
+
+    while current_date < until_date do
+      result[current_date] = balance
+      current_date += 1.day
     end
 
     result
