@@ -8,9 +8,9 @@ if ray.nil?
   )
 end
 
-checking    = snerds.accounts.where(name: 'Wells Fargo Checking').first_or_create
-credit_card = snerds.accounts.where(name: 'American Express Card').first_or_create
-mortgage    = snerds.accounts.where(name: 'Wells Fargo Mortgage').first_or_create
+checking    = snerds.accounts.where(name: 'Wells Fargo Checking', account_type: :checking).first_or_create
+credit_card = snerds.accounts.where(name: 'American Express Card', account_type: :credit_card).first_or_create
+mortgage    = snerds.accounts.where(name: 'Wells Fargo Mortgage', account_type: :loan).first_or_create
 
 #
 # recurring transactions

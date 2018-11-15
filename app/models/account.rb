@@ -13,7 +13,6 @@
 # an Account (bank, etc) belonging to a Family
 #
 class Account < ApplicationRecord
-  encrypted_id key: 'c055cafa7225635b'
   has_many :transactions, dependent: :destroy
   has_many :recurring_transactions, dependent: :destroy
   belongs_to :family
@@ -21,7 +20,8 @@ class Account < ApplicationRecord
   enum account_type: {
     checking:    0,
     savings:     1,
-    credit_card: 2
+    credit_card: 2,
+    loan:        3,
   }
 
   def asset?
