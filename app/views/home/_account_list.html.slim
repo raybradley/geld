@@ -2,14 +2,14 @@
   h5 Accounts
   ul
     - @current_family.accounts.each do |account|
-      - classes = ["#{account.account_type}-account"]
+      - classes = ["#{account.type.downcase}-account"]
       - classes << 'active' if account == @account
-      li(class=classes.join(' ')) = link_to raw("#{account_glyph(account)}#{account.name}"), account, class: 'sidebar'
+      li(class=classes.join(' ')) = link_to raw("#{account_glyph(account)}#{account.name}"), account_path(account), class: 'sidebar'
 
     li.new-account
       .dropup
         = link_to raw("<i class=\"fa fa-plus\"></i>#{I18n.t('accounts.new')}"), new_account_path, data: { toggle: 'dropdown' }, class: 'sidebar'
         .dropdown-menu
-          = link_to I18n.t('accounts.checking'), new_account_path(account_type: 'checking'), remote: true, class: 'dropdown-item'
-          = link_to I18n.t('accounts.savings'), new_account_path(account_type: 'savings'), remote: true, class: 'dropdown-item'
-          = link_to I18n.t('accounts.credit_card'), new_account_path(account_type: 'credit_card'), remote: true, class: 'dropdown-item'
+          = link_to I18n.t('accounts.checking'),    new_account_path(type: 'checking'),     remote: true, class: 'dropdown-item'
+          = link_to I18n.t('accounts.savings'),     new_account_path(type: 'savings'),      remote: true, class: 'dropdown-item'
+          = link_to I18n.t('accounts.credit_card'), new_account_path(type: 'credit_card'),  remote: true, class: 'dropdown-item'

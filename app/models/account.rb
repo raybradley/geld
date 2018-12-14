@@ -2,12 +2,12 @@
 #
 # Table name: accounts
 #
-#  id           :integer          not null, primary key
-#  name         :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  family_id    :integer
-#  account_type :integer
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  family_id  :integer
+#  type       :string
 #
 
 # an Account (bank, etc) belonging to a Family
@@ -17,19 +17,12 @@ class Account < ApplicationRecord
   has_many :recurring_transactions, dependent: :destroy
   belongs_to :family
 
-  enum account_type: {
-    checking:    0,
-    savings:     1,
-    credit_card: 2,
-    loan:        3,
-  }
-
   def asset?
     !liability?
   end
 
   def liability?
-    [:credit_card].include? account_type.to_sym
+    self.is_a? LiabilityAccount
   end
 
   def balance

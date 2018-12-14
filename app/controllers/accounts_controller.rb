@@ -3,14 +3,14 @@ class AccountsController < ApplicationController
   before_action :find_current_family
 
   def show
-    @additional_classes = "#{@account.account_type}-account"
-    @color = 'rgb(247, 185, 0)' if @account.account_type == 'checking'
-    @color = 'rgb(0, 116, 240)' if @account.account_type == 'credit_card'
+    @additional_classes = "#{@account.type.downcase}-account"
+    @color = 'rgb(247, 185, 0)' if @account.is_a? CheckingAccount
+    @color = 'rgb(0, 116, 240)' if @account.is_a? CreditCardAccount
     find_transactions_and_balances
   end
 
   def new
-    @account = current_family.accounts.new(account_type: params[:account_type].to_sym)
+    @account = current_family.accounts.new(type: params[:type])
   end
 
   def create
@@ -31,7 +31,7 @@ class AccountsController < ApplicationController
   end
 
   def account_params
-    params.require(:account).permit(:name, :account_type)
+    params.require(:account).permit(:name, :type)
   end
 
   def find_account

@@ -1,0 +1,2 @@
+class SavingsAccount < AssetAccount
+end

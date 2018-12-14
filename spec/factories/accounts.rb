@@ -2,12 +2,12 @@
 #
 # Table name: accounts
 #
-#  id           :integer          not null, primary key
-#  name         :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  family_id    :integer
-#  account_type :integer
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  family_id  :integer
+#  type       :string
 #
 
 FactoryBot.define do

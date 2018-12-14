@@ -10,7 +10,7 @@ module ApplicationHelper
       :savings     => 'piggy-bank',
     }
 
-    "<i class=\"far fa-#{glyphs[account.account_type.to_sym]}\"></i>"
+    "<i class=\"far fa-#{glyphs[account.type.downcase.to_sym]}\"></i>"
   end
 
   def additional_classes

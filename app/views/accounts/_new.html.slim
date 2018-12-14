@@ -3,7 +3,7 @@
     .modal-dialog
       .modal-content
         .modal-header
-          h5.modal-title = I18n.t('accounts.title_new', account_type: I18n.t("accounts.#{@account.account_type}"))
+          h5.modal-title = I18n.t('accounts.title_new', type: I18n.t("accounts.#{@account.type}"))
           button.close(type="button" data-dismiss="modal")
             span &times;
         .modal-body
@@ -16,6 +16,6 @@
             = text_field_tag :initial_balance, nil, class: 'form-control'
 
         .modal-footer
-          = f.hidden_field :account_type
+          = f.hidden_field :type
           button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
           = f.submit 'Add Account', class: 'btn btn-primary'

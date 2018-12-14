@@ -21,6 +21,7 @@ $red: $color_brand;
 $color_checking:    darken($yellow, 3%);
 $color_credit_card: darken($blue,   3%);
 $color_savings:     darken($green,  3%);
+$color_sidebar_background: #363534;
 $spacing_standard: 30px;
 $spacing_narrow: $spacing_standard * 0.5;
 $width_sidebar: $spacing_standard * 16;
@@ -53,7 +54,7 @@ body {
 }
 
 body, input {
-  font-family: "Ringside Regular SSm A", "Ringside Regular SSm B";
+  font-family: Helvetica-Neue, Helvetica, "Ringside Regular SSm A", "Ringside Regular SSm B";
   font-style: normal;
   font-weight: 400;
   color: darken(#E5E4E4, 50%);
@@ -139,39 +140,49 @@ table tr:hover {
   cursor: default;
 }
 
-header, main, sidebar {
+nav, main, aside {
   position: absolute;
-  top: $spacing_standard;
-  bottom: $spacing_standard;
+  top: 0;
+  bottom: 0;
+  padding: $spacing_standard;
 }
 
-header {
-  left: $spacing_standard;
+body {
+  background: #363534;
+}
+
+nav {
+  padding: $spacing_standard;
+  left: 0;
   width: $spacing_standard * 10;
 }
 
 main {
+  padding: 0;
   left: 360px;
-  right: 30px;
+  right: 0;
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+//   border-radius: 8px;
+//   box-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
 
-sidebar {
-  right: $spacing_standard;
+aside {
+  right: 0;
   width: 0;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  background-color: #e4e5e6;
+  padding: 0;
+//   border-radius: 8px;
+//   box-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
 
 body.detailed {
   main {
-    right: $width_sidebar + ($spacing_standard * 1.5);
+    right: $width_sidebar + ($spacing_standard * 0);
   }
-  sidebar {
+
+  aside {
     width: $width_sidebar;
+    padding: $spacing_standard;
     padding: $spacing_standard;
   }
 }
@@ -262,6 +273,11 @@ body.detailed {
   right: 32px;
 }
 
+#ledger {
+  right: 0;
+  left: 0;
+}
+
 #cash-flow-chart {
   top: 32px;
   height: 300px;
@@ -274,24 +290,24 @@ body.detailed {
 }
 
 // headers for different account types
-header h1 {
+nav h1 {
   font-family: 'Sentinel SSm A', 'Sentinel SSm B', Georgia, serif;
 }
 
 body.checking-account {
-  header h1 {
+  nav h1 {
     color: $color_checking;
   }
 }
 
 body.credit_card-account {
-  header h1 {
+  nav h1 {
     color: $color_credit_card;
   }
 }
 
 body.savings-account {
-  header h1 {
+  nav h1 {
     color: $color_savings;
   }
 }
@@ -331,4 +347,12 @@ input::-webkit-inner-spin-button {
   p {
     text-align: center;
   }
+}
+
+input[type="text"] {
+  background: rgba(255, 255, 255, 0.5);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
