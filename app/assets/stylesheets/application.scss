@@ -14,13 +14,14 @@
  *= require_self
  */
 
-@import "bootstrap";
+// @import "bootstrap";
+@import "semantic-ui";
 
-$color_brand: #a00000;
+$color_brand: #54F1FF;
 $red: $color_brand;
-$color_checking:    darken($yellow, 3%);
-$color_credit_card: darken($blue,   3%);
-$color_savings:     darken($green,  3%);
+$color_checking:    #aa6688;
+$color_credit_card: #88aa66;
+$color_savings:     #66aa88;
 $color_sidebar_background: #363534;
 $spacing_standard: 30px;
 $spacing_narrow: $spacing_standard * 0.5;

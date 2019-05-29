@@ -2,7 +2,7 @@
 #
 # Table name: recurring_transactions
 #
-#  id                   :integer          not null, primary key
+#  id                   :bigint(8)        not null, primary key
 #  frequency            :integer
 #  amount               :decimal(8, 2)
 #  starts_at            :date

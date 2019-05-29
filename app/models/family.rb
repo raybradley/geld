@@ -2,7 +2,7 @@
 #
 # Table name: families
 #
-#  id         :integer          not null, primary key
+#  id         :bigint(8)        not null, primary key
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -16,6 +16,7 @@ class Family < ApplicationRecord
   has_many :accounts, dependent: :destroy
   has_many :recurring_transactions, through: :accounts
   has_many :transactions, through: :accounts
+  has_many :budgets
 
   # returns recurring transactions on this family up to a target date
   def future_transactions(until_date: nil)

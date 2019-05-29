@@ -11,7 +11,7 @@ class TransactionsController < ApplicationController
   private
 
   def find_transaction
-    @transaction = current_family.transactions.find(params[:id])
+    @transaction = @family.transactions.find(params[:id])
   end
 
   def transaction_params

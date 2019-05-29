@@ -1,20 +1,21 @@
-class HomeController < ApplicationController
+class HomeController < FamilyContextController
   before_action :authenticate_user!
 
   def index
     from_date  = 3.weeks.ago
     until_date = 3.month.from_now
 
-    @current_family   = current_family
-    @starting_balance = @current_family.balance_on(target_date: from_date)
-    @transactions     = @current_family.all_transactions(
+    @starting_balance = @family.balance_on(target_date: from_date)
+    @transactions     = @family.all_transactions(
       from_date: from_date,
       until_date: until_date
     )
 
-    @daily_balances = @current_family.balance_over_time(
+    @daily_balances = @family.balance_over_time(
       from_date: from_date,
       until_date: until_date
     )
+
+    @accounts = @family.accounts
   end
 end

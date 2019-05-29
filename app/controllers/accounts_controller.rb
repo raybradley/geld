@@ -1,6 +1,5 @@
-class AccountsController < ApplicationController
+class AccountsController < FamilyContextController
   before_action :find_account, only: [:show]
-  before_action :find_current_family
 
   def show
     @additional_classes = "#{@account.type.downcase}-account"
@@ -10,11 +9,11 @@ class AccountsController < ApplicationController
   end
 
   def new
-    @account = current_family.accounts.new(type: params[:type])
+    @account = @family.accounts.new(type: params[:type])
   end
 
   def create
-    @account = @current_family.accounts.new(account_params)
+    @account = @family.accounts.new(account_params)
     @account.save
     @account.transactions.create(
       description: 'Initial balance',
@@ -25,10 +24,6 @@ class AccountsController < ApplicationController
   end
 
   private
-
-  def find_current_family
-    @current_family = current_family
-  end
 
   def account_params
     params.require(:account).permit(:name, :type)

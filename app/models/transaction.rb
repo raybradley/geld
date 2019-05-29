@@ -2,7 +2,7 @@
 #
 # Table name: transactions
 #
-#  id            :integer          not null, primary key
+#  id            :bigint(8)        not null, primary key
 #  occurred_at   :date
 #  amount        :decimal(8, 2)
 #  description   :string

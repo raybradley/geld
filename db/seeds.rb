@@ -26,7 +26,7 @@ checking.recurring_transactions.where(
   starts_at: '2018-03-01',
   frequency: :weekly,
   frequency_multiplier: 2,
-  amount: 4567.89,
+  amount: 6405.04,
   description: 'Sema4 Payroll Net'
 ).first_or_create
 
