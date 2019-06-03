@@ -83,9 +83,12 @@ td.currency, th.currency {
   }
 }
 
-.future {
+tr.future {
+  background-color: #f6f6f6;
+  font-style: italic;
+
   td {
-    color: #888;
+    color: #aaa;
   }
 }
 

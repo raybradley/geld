@@ -82,8 +82,9 @@ class RecurringTransaction < ApplicationRecord
   # hasn't happened before, it'll return the next date after
   # today based on the recurrence scheme
   def next_date(after: nil)
-    after ||= last_occurred_at || Date.today
-    result = after
+    after ||= Date.today
+    # result = after # <- bogus
+    result = starts_at # <- correct
     until result > after
       increment = frequency_multiplier.day   if daily?
       increment = frequency_multiplier.week  if weekly?
@@ -114,11 +115,6 @@ class RecurringTransaction < ApplicationRecord
     end
   end
 
-  # return all instances of this recurring transactions
-  def instances
-    self.account.transactions.where(recurring_transaction_id: self.id)
-  end
-
   # create an instance of the transaction on a particular date
   # NOTE: it doesn't care whether the supplied date is consistent with
   # the recurrence scheme
@@ -131,7 +127,15 @@ class RecurringTransaction < ApplicationRecord
       description:           self.description,
       recurring_transaction: self
     )
+
+    last_occurred_at = [last_occurred_at, occurred_at].max
+    self.save!
   end
+
+  # return all instances of this recurring transactions
+  def instances
+    self.account.transactions.where(recurring_transaction_id: self.id)
+  end  
 
   # when would it have run previously?
   def previous_date(before: Date.today)
