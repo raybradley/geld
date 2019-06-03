@@ -1,0 +1,11 @@
+2019-06-02 17:21:56.697 EDT [57377] LOG:  listening on IPv6 address "::1", port 5432
+2019-06-02 17:21:56.697 EDT [57377] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2019-06-02 17:21:56.698 EDT [57377] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2019-06-02 17:21:56.709 EDT [57378] LOG:  database system was shut down at 2019-06-02 17:21:47 EDT
+2019-06-02 17:21:56.712 EDT [57377] LOG:  database system is ready to accept connections
+2019-06-02 17:22:02.585 EDT [57388] FATAL:  role "postgres" does not exist
+2019-06-02 17:22:17.270 EDT [57390] FATAL:  role "postgres" does not exist
+2019-06-02 17:23:31.865 EDT [57411] ERROR:  column recurring_transactions.type does not exist at character 302
+2019-06-02 17:23:31.865 EDT [57411] STATEMENT:  SELECT  "recurring_transactions".* FROM "recurring_transactions" WHERE "recurring_transactions"."account_id" = $1 AND "recurring_transactions"."starts_at" = $2 AND "recurring_transactions"."description" = $3 AND "recurring_transactions"."frequency" = $4 AND "recurring_transactions"."amount" = $5 AND "recurring_transactions"."type" = $6 ORDER BY "recurring_transactions"."id" ASC LIMIT $7
+2019-06-02 17:23:44.170 EDT [57418] ERROR:  column recurring_transactions.type does not exist at character 302
+2019-06-02 17:23:44.170 EDT [57418] STATEMENT:  SELECT  "recurring_transactions".* FROM "recurring_transactions" WHERE "recurring_transactions"."account_id" = $1 AND "recurring_transactions"."starts_at" = $2 AND "recurring_transactions"."description" = $3 AND "recurring_transactions"."frequency" = $4 AND "recurring_transactions"."amount" = $5 AND "recurring_transactions"."type" = $6 ORDER BY "recurring_transactions"."id" ASC LIMIT $7

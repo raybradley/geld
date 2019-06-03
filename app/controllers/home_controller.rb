@@ -3,7 +3,7 @@ class HomeController < FamilyContextController
 
   def index
     from_date  = 3.weeks.ago
-    until_date = 3.month.from_now
+    until_date = 4.weeks.from_now
 
     @starting_balance = @family.balance_on(target_date: from_date)
     @transactions     = @family.all_transactions(

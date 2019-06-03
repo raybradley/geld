@@ -12,7 +12,6 @@
 #  description          :string
 #  account_id           :integer
 #  last_occurred_at     :date
-#  type                 :string
 #  to_account_id        :integer
 #
 
@@ -78,7 +77,10 @@ class RecurringTransaction < ApplicationRecord
     txn
   end
 
-  # when will it run again?
+  # when will it run again? If it's happened before,
+  # the next date will honor the recurrence scheme. If it
+  # hasn't happened before, it'll return the next date after
+  # today based on the recurrence scheme
   def next_date(after: nil)
     after ||= last_occurred_at || Date.today
     result = after
@@ -90,6 +92,45 @@ class RecurringTransaction < ApplicationRecord
       result += increment
     end
     result
+  end
+
+  # create all instances from a particular date until now
+  # NOTE: it doesn't care whether the from_date is consistent
+  # with the recurrence scheme
+  def create_instances_to_now(from_date: nil)
+    return unless from_date.present?
+    from_date = DateTime.parse from_date if from_date.is_a?(String)
+    return unless from_date.is_a? DateTime
+
+    the_date = from_date
+
+    # loop until the next 
+    until the_date.future?
+      unless self.account.transactions.exists?(recurring_transaction_id: self.id, occurred_at: the_date)
+        create_instance(occurred_at: the_date)
+      end
+
+      the_date = next_date(after: the_date)
+    end
+  end
+
+  # return all instances of this recurring transactions
+  def instances
+    self.account.transactions.where(recurring_transaction_id: self.id)
+  end
+
+  # create an instance of the transaction on a particular date
+  # NOTE: it doesn't care whether the supplied date is consistent with
+  # the recurrence scheme
+  def create_instance(occurred_at: nil)
+    return unless occurred_at.present?
+
+    self.account.transactions.create!(
+      occurred_at:           occurred_at,
+      amount:                self.amount,
+      description:           self.description,
+      recurring_transaction: self
+    )
   end
 
   # when would it have run previously?

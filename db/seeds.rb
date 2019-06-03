@@ -22,13 +22,15 @@ a = checking.recurring_transactions.where(
   description: 'Verizon Wireless'
 ).first_or_create
 
-checking.recurring_transactions.where(
-  starts_at: '2018-03-01',
+payroll = checking.recurring_transactions.where(
+  starts_at: '2019-05-31',
   frequency: :weekly,
   frequency_multiplier: 2,
   amount: 6405.04,
   description: 'Sema4 Payroll Net'
 ).first_or_create
+
+payroll.create_instances_to_now(from_date: '2019-05-31')
 
 checking.recurring_transactions.where(
   starts_at: '2018-03-01',
@@ -82,7 +84,6 @@ credit_card.recurring_transactions.where(
   description: 'Groceries',
   frequency: :monthly,
   amount: -450,
-  type: 'BudgetItem'
 ).first_or_create
 
 #
@@ -90,7 +91,7 @@ credit_card.recurring_transactions.where(
 #
 checking.transactions.where(
   occurred_at: 12.months.ago,
-  amount: 10987.65,
+  amount: 987.65,
   description: 'Initial balance'
 ).first_or_create
 
