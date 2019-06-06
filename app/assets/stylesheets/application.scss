@@ -15,6 +15,9 @@
  */
 
 // @import "bootstrap";
+
+
+
 @import "semantic-ui";
 
 $color_brand: #54F1FF;
@@ -25,10 +28,10 @@ $color_savings:     #66aa88;
 $color_sidebar_background: #f2f2f2;
 $spacing_standard: 30px;
 $spacing_narrow: $spacing_standard * 0.5;
-$width_sidebar: $spacing_standard * 16;
+$width_sidebar: 270px;
 
 h1 {
-  color: $color_brand;
+  color: #000;
   font-weight: 800;
   line-height: 1.0;
 }
@@ -55,7 +58,7 @@ body {
 }
 
 body, input {
-  font-family: Helvetica-Neue, Helvetica, "Ringside Regular SSm A", "Ringside Regular SSm B";
+  font-family: "Avenir Next", Helvetica-Neue, Helvetica, "Ringside Regular SSm A", "Ringside Regular SSm B";
   font-style: normal;
   font-weight: 400;
   color: darken(#E5E4E4, 50%);
@@ -84,7 +87,7 @@ td.currency, th.currency {
 }
 
 tr.future {
-  background-color: #f6f6f6;
+  background-color: #fafafa;
   font-style: italic;
 
   td {
@@ -159,8 +162,8 @@ nav {
 }
 
 main {
-  padding: 0;
-  left: 360px;
+  padding: $spacing_standard;
+  left: $width_sidebar;
   right: 0;
   background-color: #fff;
 //   border-radius: 8px;
@@ -270,8 +273,8 @@ body.detailed {
 
 #cash-flow-chart, #ledger {
   position: absolute;
-  left: 32px;
-  right: 32px;
+  left:  45px;
+  right: 45px;
 }
 
 #ledger {
@@ -280,12 +283,12 @@ body.detailed {
 }
 
 #cash-flow-chart {
-  top: 32px;
+  top: 90px;
   height: 300px;
 }
 
 #ledger {
-  top: 364px;
+  top: 420px;
   bottom: 32px;
   overflow: auto;
 }
@@ -356,4 +359,32 @@ input[type="text"] {
   border: 0;
   border-radius: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+#ledger {
+  table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    th {
+      text-align: left;
+    }
+
+    td, th {
+      padding: 6px;
+
+      &:first-child {
+        padding-left: 12px;
+      }
+
+      &:last-child {
+        padding-right: 12px;
+      }
+    }
+
+    tr {
+      border-bottom: 1px solid #eee;
+    }
+  }
 }

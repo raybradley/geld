@@ -29,6 +29,10 @@ class Account < ApplicationRecord
     transactions.sum(&:amount)
   end
 
+  def virtual_account
+    false
+  end
+
   # returns the projected balance on a given date, based on
   # recurring transactions on this account
   def balance_on(target_date: nil)

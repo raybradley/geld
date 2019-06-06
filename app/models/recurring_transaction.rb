@@ -128,7 +128,7 @@ class RecurringTransaction < ApplicationRecord
       recurring_transaction: self
     )
 
-    last_occurred_at = [last_occurred_at, occurred_at].max
+    last_occurred_at = occurred_at
     self.save!
   end
 

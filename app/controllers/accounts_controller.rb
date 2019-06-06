@@ -31,6 +31,6 @@ class AccountsController < FamilyContextController
 
   def find_account
     @account = Account.find(params[:id])
-    @account = nil if @account.family != current_family
+    # @account = nil if @account.family != current_family
   end
 end

@@ -1,7 +1,7 @@
 #account-list
   h5 Accounts
   ul
-    - @accounts.each do |account|
+    - @family.accounts.each do |account|
       - classes = ["#{account.type.downcase}-account"]
       - classes << 'active' if account == @account
       li(class=classes.join(' ')) = link_to raw("#{account_glyph(account)}#{account.name}"), account_path(account), class: 'sidebar'

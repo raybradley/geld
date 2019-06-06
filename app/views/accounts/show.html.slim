@@ -1,9 +1,9 @@
 nav.nav-left
-  h1 = @account.name
-
   = render partial: 'home/account_list'
 
 main
+  h1 = @account.name
+
   - if @transactions.count.zero?
     = render partial: 'home/ledger_empty'
   - else
